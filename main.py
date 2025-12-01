@@ -1,12 +1,11 @@
 from fastapi import FastAPI
-from pydantic import BaseModel
 
 app = FastAPI()
 
-class Payload(BaseModel):
-    text: str
+@app.get("/")
+def root():
+    return {"status": "ok", "message": "FastAPI server is running"}
 
 @app.post("/receive")
-def receive(payload: Payload):
-    print("Received:", payload.text)
-    return {"status": "ok", "received": payload.text}
+def receive(data: dict):
+    return {"received": data}
