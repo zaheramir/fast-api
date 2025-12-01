@@ -7,5 +7,6 @@ def root():
     return {"status": "ok", "message": "FastAPI server is running"}
 
 @app.post("/receive")
-def receive(data: dict):
+async def receive(data: dict):
+    print("Received data:", data)  # 👈 this will appear in Render logs
     return {"received": data}
